@@ -1,16 +1,3 @@
-Lmabda to monitor VPC Peering
-To use Lambda sending notification when there is more than 1 VPC peering within a region using the API call DescribeVpcPeeringConnections, I created an example of a Lambda function and tested it as well, and I was able to receive emails when there is more than 1 VPC peering withing a region. 
-
-To use and test my sample Lambda function, you can follow the below steps,  
-
-[1] Permissions for your Lambda functions, where you need to allow the needed API calls like DescribeVpcPeeringConnections in addition to SNS as you need to public a topic via email. 
-
-[2] Create a SNS Topic so you can use it to public notification from your Lambda function and subscribe your email to it.
-- Create a Topic: http://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html
-- Create a subscription with your email address (you need to verify it from your email afterwards) : http://docs.aws.amazon.com/sns/latest/dg/SubscribeTopic.html
-
-[3] Create your Lambda function. 
-
 /*Start of code*/
 console.log('Loading function');
 var AWS = require('aws-sdk');
@@ -45,13 +32,3 @@ exports.handler = function(event, context) {
     });
 };
 /*end of code*/
-
-[4] Create an event schedule for your Lambda function by going to Event sources -> Add event source -> then set the parameters,
-Event source type: CloudWatch Events - Schedule
-Rule name : //give it a name
-Rule description: //give it a description
-Schedule expression: //choose the right rate that you prefer
-
-This should help you send email notification when you have more than 1 VPC peering within a region. 
-
-If you needed any further assistance, we'll be glad to help.
